@@ -1,0 +1,14 @@
+<%= form_for(@post) do |f| %>
+
+  <%= f.label :author %>
+  <%= f.text_field :author, class: 'form-control' %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title, class: 'form-control' %>
+
+  <%= f.label :body %>
+  <%= f.text_area :body, class: 'form-control' %>
+
+  <%= f.submit "Post", class: "btn btn-primary" %>
+  
+<% end %>
