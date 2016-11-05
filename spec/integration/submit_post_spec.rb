@@ -49,6 +49,14 @@ RSpec.feature "Posts management", type: :feature do
       visit post_path(1)
       expect(page).to have_content("fulano")
     end
+
+    it "automatically adds the name of the author to post" do
+      visit new_post_path
+      fill_in 'Title', with: "some gossip"
+      fill_in 'Body', with: "Some more detail"
+      click_button 'Post'
+      expect(page).to have_content("example")
+    end
   end
 end
 
