@@ -1,7 +1,9 @@
 <% provide(:title, "Gossip") %>
 
 <h1>Gossip Stories</h1>
-<h2><%= link_to "Create New Gossip", new_post_path, class: "btn btn-lg btn-primary" %></h2>
+<% if logged_in? %>
+  <h2><%= link_to "Create New Gossip", new_post_path, class: "btn btn-lg btn-primary" %></h2>
+<% end %>
 <% if @posts.nil? %>
   <li>No Gossip yet... suprisingly.</li>
 <% else %>

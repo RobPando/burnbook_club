@@ -9,12 +9,18 @@ RSpec.describe "Post management", type: :request do
     before :each do
       @user = create(:user)
       log_in(@user)
+      @post = create(:post)
     end
 
     it "renders to post once submited" do
       post posts_path, params: { post: { title: "nae", body: "whater"} }
       follow_redirect!
       expect(response).to render_template(:show)
+    end
+
+    it "edits post" do
+      get edit_post_path(@post)
+      expect(response).to render_template(:edit)
     end
   end
 end

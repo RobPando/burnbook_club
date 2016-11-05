@@ -13,7 +13,7 @@ module SessionsHelper
   end
 
   def current_user?(user)
-    @current_user == User.find(user)
+    user == current_user
   end
 
   def log_out

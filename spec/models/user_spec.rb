@@ -2,12 +2,6 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  let(:rob) { create(:user) }
-
-  it "has valid information" do 
-    expect(rob).to be_valid 
-  end
-
   context "Invalid information" do
     before :each do
       @rob = create(:user)

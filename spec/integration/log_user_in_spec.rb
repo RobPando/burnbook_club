@@ -15,15 +15,29 @@ RSpec.describe "Session management", type: :request do
   end
 
   context "log user successfully" do
-    before do
+    before :each do
       @user = create(:user)
+      log_in(@user)
     end
 
     it "is a successful login" do
-      post login_path, params: { session: {email: @user.email, password: @user.password }}
       expect(flash[:success]).to be_present
       expect(response).to redirect_to(root_url) 
     end
+
+    it "renders edit page" do
+      get edit_user_path(@user)
+      expect(response).to render_template(:edit)
+    end
+
+    it "updates information" do
+      put user_path(@user), params: { user: { name: "bla",
+                                              email: "exemp@example.com",
+                                              password: "foozbar",
+                                              password_confirmation: "foozbar"} }
+      expect(response).to redirect_to(@user)
+    end
+
   end
 end
 
