@@ -20,4 +20,13 @@ module SessionsHelper
     session.delete(:user_id)
   end
 
+  private
+  
+  def logged_in_user
+    unless logged_in?
+      flash[:danger] = "Please log in"
+      redirect_to login_path
+    end
+  end
+
 end

@@ -1,0 +1,11 @@
+<% provide(:title, "Gossip") %>
+
+<h1>Gossip Stories</h1>
+<h2><%= link_to "Create New Gossip", new_post_path, class: "btn btn-lg btn-primary" %></h2>
+<% if @posts.nil? %>
+  <li>No Gossip yet... suprisingly.</li>
+<% else %>
+  <% @posts.each do |post| %>
+    <li><%= link_to post.title, post_path(post.id) %></li>
+  <% end %>
+<% end %>

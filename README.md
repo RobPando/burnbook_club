@@ -1,24 +1,9 @@
-# README
+# Burn Book Club Website (Might be a movie reference... MIGHT!)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+By Roberto Pando
 
-Things you may want to cover:
+Post gossip stories about anyone, only memebers will be able to see the author. Even if you sign up, you can not see the author but you can read the post, if the gossip is about you, sorry. If you REALLY want to be a member you gotta pay like a million dollars.
+[Burn Book Club]('#')
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Project inspiration by [The Odin project]('http://theodinproject.com')
+and [Rails tutorial]('http://railstutorial.org')
