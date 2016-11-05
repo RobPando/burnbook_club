@@ -1,19 +1,66 @@
 require 'rails_helper'
 
+# Test for requests on Posts
+
 RSpec.describe "Post management", type: :request do
 
-  it "renders back to new if a field is empty" do
-    get new_post_path
-    expect(response).to render_template(:new)
+  context "When user is successfully signed in" do
+    
+    before :each do
+      @user = create(:user)
+      log_in(@user)
+    end
 
-    post "/posts", params: { post: { author: " ", title: "nae", body: "whater"} }
-    expect(response).to render_template(:new)
+    it "renders to post once submited" do
+      post posts_path, params: { post: { title: "nae", body: "whater"} }
+      follow_redirect!
+      expect(response).to render_template(:show)
+    end
   end
-
-  it "renders to post once submited" do
-    post posts_path, params: { post: { author: "regina", title: "nae", body: "whater"} }
-    follow_redirect!
-    expect(response).to render_template(:show)
-  end
-
 end
+
+# Test for views on Posts
+
+RSpec.feature "Posts management", type: :feature do
+
+  before :each do
+    create(:post)
+  end
+
+  context "A non member cannot see the author of a post" do
+    it "sees memeber only as author" do
+      visit post_path(1)
+      expect(page).to have_content("By MEMBERS ONLY")
+    end
+
+  end
+
+  context "A member can see the name of the author" do
+
+    before :each do
+      @user = create(:user, member: true)
+      visit login_path
+      fill_in 'Email', with: @user.email
+      fill_in 'Password', with: @user.password
+      click_button 'Log in'
+    end
+
+    it "sees the name of author 'example'" do
+      visit post_path(1)
+      expect(page).to have_content("fulano")
+    end
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+

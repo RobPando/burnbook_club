@@ -2,7 +2,7 @@
 
 <h1><%= @post.title %></h1>
 
-<% if current_user.member? %>
+<% if logged_in? && current_user.member? %>
   <h2>By <%= @post.author %></h2>
 <% else %>
   <h2>By MEMBERS ONLY</h2>

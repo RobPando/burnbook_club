@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+# Test the behavior of requests on Visitors
+
 RSpec.describe "Session management", type: :request do
   
   it "renders log in page" do
@@ -25,11 +27,14 @@ RSpec.describe "Session management", type: :request do
   end
 end
 
+# Test for the expected behavior on Views
+
 RSpec.feature "Home page Log change", type: :feature do
 
   it "shows log in link if user is not logged in " do
     visit root_url
-    expect(page).to have_link("Log in", login_path)
+    expect(page).to have_link("Log in")
+    expect(page).to have_link("Sign up")
   end
 
   it "does not show log out if user is not logged in" do

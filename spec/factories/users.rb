@@ -6,5 +6,4 @@ FactoryGirl.define do
     password_confirmation 'foobar'
     member false
   end
-
 end
