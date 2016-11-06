@@ -38,6 +38,14 @@ RSpec.describe "Session management", type: :request do
       expect(response).to redirect_to(@user)
     end
 
+    it "remembers the user" do
+      expect(cookies['remember_token']).to_not be_nil
+    end
+
+    it "does not remember the user" do
+      log_in(@user, remember_me: '0')
+      expect(cookies['remember_token']).to be_empty
+    end
   end
 end
 

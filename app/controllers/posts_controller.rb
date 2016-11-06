@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create]
+  before_action :is_admin, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.new

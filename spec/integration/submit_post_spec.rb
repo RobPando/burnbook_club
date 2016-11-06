@@ -17,11 +17,6 @@ RSpec.describe "Post management", type: :request do
       follow_redirect!
       expect(response).to render_template(:show)
     end
-
-    it "edits post" do
-      get edit_post_path(@post)
-      expect(response).to render_template(:edit)
-    end
   end
 end
 
@@ -33,7 +28,7 @@ RSpec.feature "Posts management", type: :feature do
     create(:post)
   end
 
-  context "A non member cannot see the author of a post" do
+  context "An unregistered user cannot see the author of a post" do
     it "sees memeber only as author" do
       visit post_path(1)
       expect(page).to have_content("By MEMBERS ONLY")
@@ -41,10 +36,10 @@ RSpec.feature "Posts management", type: :feature do
 
   end
 
-  context "A member can see the name of the author" do
+  context "A logged in user can see the name of the author" do
 
     before :each do
-      @user = create(:user, member: true)
+      @user = create(:user)
       visit login_path
       fill_in 'Email', with: @user.email
       fill_in 'Password', with: @user.password
