@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+ 
+/* Footer config to stay at the bottom */
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+.container {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -70px; 
+}
+.container:after {
+  content: "";
+  display: block;
+}
+footer, .container:after {
+  height: 70px; 
+}
